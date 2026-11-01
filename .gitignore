@@ -1,0 +1,14 @@
+target/
+
+# IntelliJ IDEA : réglages propres à chaque poste
+.idea/
+*.iml
+out/
+
+# Identifiants locaux : ne JAMAIS les versionner
+bdd/db.properties
+
+# Linux
+
+*~
+.directory

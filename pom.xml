@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fr.uphf.poo</groupId>
+  <artifactId>ludotheque</artifactId>
+  <version>0.2</version>
+
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- Pilote JDBC MariaDB -->
+    <dependency>
+      <groupId>org.mariadb.jdbc</groupId>
+      <artifactId>mariadb-java-client</artifactId>
+      <version>3.5.1</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <!-- Ressources classiques (FXML, images... en S3) -->
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <!-- Le dossier bdd/ est aussi sur le classpath : scripts SQL + db.properties -->
+      <resource>
+        <directory>bdd</directory>
+        <includes>
+          <include>*.sql</include>
+          <include>db.properties</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <!-- Lancer en ligne de commande : mvn compile exec:java -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration>
+          <mainClass>ludotheque.MainTestBDD</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
